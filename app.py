@@ -1,91 +1,110 @@
 import streamlit as st
 
-st.set_page_config(page_title="Climate Change Dashboard - Nepal", layout="wide")
+# Setup Streamlit page config
+st.set_page_config(
+    page_title="Nepal Climate and Development Dashboard",
+    page_icon="🌏",
+    layout="wide",
+)
 
-st.title("🌍 Climate Change Impact Assessment Dashboard")
-
+# App Title and Introduction
+st.title("🌏 Nepal Climate and Development Dashboard")
 st.markdown("""
-Welcome to the central hub for analyzing and predicting the impacts of climate change in Nepal.
+Welcome to the Multi-Domain Dashboard analyzing various sectors like:
+- 🌦️ Weather and Climate
+- 🌱 Environmental Indicators
+- 🏛️ Socioeconomic Development
 
-Use the sidebar to navigate through various modules:
-- 📊 Weather & Climate Data
-- 🛰️ Environmental Data
-- 👥 Socioeconomic Data
-- 🤖 Machine Learning Models
-- 🗣️ NLP for Climate Reports
-- 📈 Model Evaluation & Deployment
+Use the sidebar to navigate!
 """)
 
-st.header("🔍 Project Objective")
-st.info("""
-To build a modular, data-driven system for monitoring, analyzing, and forecasting climate change
-impacts in Nepal, with a focus on data integration and stakeholder usability.
-""")
+# Sidebar - First Select Domain
+st.sidebar.title("Select Analysis Domain")
 
-st.header("📦 Modules Overview")
-st.markdown("""
-Navigate to any of the modules via the **left sidebar**. Each module includes:
-- Data Loading & Cleaning
-- Exploratory Analysis
-- Feature Engineering
-- Machine Learning
-- Evaluation & Dashboarding
-- Documentation
-""")
-
-# pages/1_Weather_Climate_Data.py
-import streamlit as st
-
-st.title("📊 Weather & Climate Data")
-st.markdown("Analyze historical weather trends, glacial monitoring, and reanalysis data.")
-
-section = st.sidebar.radio("Select Submodule", [
-    "📈 Historical DHM Data",
-    "🛰️ NASA Satellite Imagery",
-    "📍 WMO Weather Station Data",
-    "🌡️ ERA5 Climate Reanalysis"
+domain = st.sidebar.selectbox("Choose a Domain", [
+    "🌦️ Climate / Weather",
+    "🌱 Environmental Indicators",
+    "🏛️ Socioeconomic Indicators"
 ])
 
-if section == "📈 Historical DHM Data":
-    st.subheader("1. Historical DHM Data")
-    st.markdown("""
-    - Step 1: Upload and preprocess historical temperature/precipitation datasets
-    - Step 2: Perform EDA and visualize long-term trends
-    - Step 3: Feature engineering (seasonal indices, anomalies)
-    - Step 4: Model temperature prediction
-    - Step 5: Evaluate prediction accuracy
-    """)
-    # Placeholder for data upload and preview
-    uploaded = st.file_uploader("Upload DHM CSV/XLSX", type=["csv", "xlsx"])
-    if uploaded:
-        st.success("File uploaded successfully!")
+# Sidebar - Then Select Page based on Domain
+if domain == "🌦️ Climate / Weather":
+    page = st.sidebar.radio("Weather Reports", [
+        "📈 Yearly Extreme Event Trends",
+        "🗺️ District-Wise Weather Map",
+        "📐 Mann-Kendall Weather Test",
+        "📉 Sen's Slope Weather Trend",
+        "📖 About Climate Module"
+    ])
 
-elif section == "🛰️ NASA Satellite Imagery":
-    st.subheader("2. Satellite Imagery for Glacial Monitoring")
-    st.markdown("""
-    - Step 1: Upload satellite imagery
-    - Step 2: Extract glacial coverage
-    - Step 3: Analyze retreat over time
-    - Step 4: Predict future melt regions
-    - Step 5: Display geospatial analysis
-    """)
+    if page == "📈 Yearly Extreme Event Trends":
+        from modules.weather.trend_overview import show_trend_chart_weather
+        show_trend_chart_weather()
 
-elif section == "📍 WMO Weather Station Data":
-    st.subheader("3. WMO Weather Station Data")
-    st.markdown("""
-    - Step 1: Upload station data
-    - Step 2: Map coordinates
-    - Step 3: Cluster stations by altitude
-    - Step 4: Analyze station-wise trends
-    - Step 5: Classification of vulnerable zones
-    """)
+    elif page == "🗺️ District-Wise Weather Map":
+        from modules.weather.map_view import show_map
+        show_map()
 
-elif section == "🌡️ ERA5 Climate Reanalysis":
-    st.subheader("4. ERA5 Climate Reanalysis")
-    st.markdown("""
-    - Step 1: Load ERA5 NetCDF files
-    - Step 2: Visualize monthly/yearly anomalies
-    - Step 3: Build climate index predictors
-    - Step 4: Model climate trends using ML
-    - Step 5: Integrate with dashboard
-    """)
+    elif page == "📐 Mann-Kendall Weather Test":
+        from modules.weather.mann_kendall_summary import show_mk_results
+        show_mk_results()
+
+    elif page == "📉 Sen's Slope Weather Trend":
+        from modules.weather.sen_slope import show_sen_plot
+        show_sen_plot()
+
+    elif page == "📖 About Climate Module":
+        from modules.weather.about import show_about
+        show_about()
+
+elif domain == "🌱 Environmental Indicators":
+    page = st.sidebar.radio("Environmental Reports", [
+        "🌳 Forest Cover Trends",
+        "🌫️ Air Quality Analysis",
+        "🚰 Water Resource Health",
+        "📖 About Environment Module"
+    ])
+
+    if page == "🌳 Forest Cover Trends":
+        from modules.environment.forest_trend import show_forest_trend
+        show_forest_trend()
+
+    elif page == "🌫️ Air Quality Analysis":
+        from modules.environment.air_quality import show_air_quality
+        show_air_quality()
+
+    elif page == "🚰 Water Resource Health":
+        from modules.environment.water_health import show_water_health
+        show_water_health()
+
+    elif page == "📖 About Environment Module":
+        from modules.environment.about import show_about_environment
+        show_about_environment()
+
+elif domain == "🏛️ Socioeconomic Indicators":
+    page = st.sidebar.radio("Socioeconomic Reports", [
+        "🏫 Education Trends",
+        "🏥 Health Access Analysis",
+        "💼 Employment Rate Analysis",
+        "📖 About Socioeconomic Module"
+    ])
+
+    if page == "🏫 Education Trends":
+        from modules.socioeconomic.education_trend import show_education_trend
+        show_education_trend()
+
+    elif page == "🏥 Health Access Analysis":
+        from modules.socioeconomic.health_access import show_health_access
+        show_health_access()
+
+    elif page == "💼 Employment Rate Analysis":
+        from modules.socioeconomic.employment_rate import show_employment_rate
+        show_employment_rate()
+
+    elif page == "📖 About Socioeconomic Module":
+        from modules.socioeconomic.about import show_about_socioeconomic
+        show_about_socioeconomic()
+
+
+else:
+    st.warning("⚠️ Please select a valid Domain and Report.")
