@@ -21,15 +21,15 @@ It serves as a multi-domain decision-support system, combining:
 
 # ⚙️ Technologies Used
 
-- Python 3.10+
-- Streamlit (Interactive UI)
-- Pandas (Data Manipulation)
-- Plotly (Interactive Charts)
-- Matplotlib (Static Plots)
-- PyMannKendall (Trend Analysis)
-- Scikit-learn (Scaling, Preprocessing)
-- GeoPandas & Folium (Spatial Mapping)
-- RapidFuzz (Fuzzy Station Name Matching)
+- **Python 3.10+**
+- **Streamlit** - Dashboard Framework
+- **Pandas** - Data Handling
+- **Plotly** - Interactive Charts and Maps
+- **Matplotlib** - Static Charts
+- **PyMannKendall** - Trend Analysis
+- **Scikit-learn** - Scaling, Preprocessing
+- **GeoPandas & Folium** - Spatial Mapping
+- **RapidFuzz** - Fuzzy Matching for Station Names
 
 ---
 
@@ -128,6 +128,16 @@ This system is designed to allow:
 
 ---
 
+# 🛠️ Step-by-Step Setup Guide
+
+                 1. Clone the Repository
+                2. Create and Activate a Virtual Environment
+                conda create -p ./.conda python=3.10
+conda activate ./ .conda
+
+                3. Install Required Libraries
+                pip install -r requirements.txt
+streamlit run app.py
 
 
 ---
