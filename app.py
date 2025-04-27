@@ -14,6 +14,7 @@ Welcome to the Multi-Domain Dashboard analyzing various sectors like:
 - 🌦️ Weather and Climate
 - 🌱 Environmental Indicators
 - 🏛️ Socioeconomic Development
+- 🏔️ Glacier Monitoring and Prediction
 
 Use the sidebar to navigate!
 """)
@@ -24,7 +25,8 @@ st.sidebar.title("Select Analysis Domain")
 domain = st.sidebar.selectbox("Choose a Domain", [
     "🌦️ Climate / Weather",
     "🌱 Environmental Indicators",
-    "🏛️ Socioeconomic Indicators"
+    "🏛️ Socioeconomic Indicators",
+    "🏔️ Glacier Monitoring"
 ])
 
 # Sidebar - Then Select Page based on Domain
@@ -104,6 +106,30 @@ elif domain == "🏛️ Socioeconomic Indicators":
     elif page == "📖 About Socioeconomic Module":
         from modules.socioeconomic.about import show_about_socioeconomic
         show_about_socioeconomic()
+
+elif domain == "🏔️ Glacier Monitoring":
+    page = st.sidebar.radio("Glacier Monitoring Reports", [
+        "📊 Historical Glacier Trends",
+        "🔮 Forecast Glacier Melt",
+        "📈 Model Evaluation",
+        "📖 About Glacier Module"
+    ])
+
+    if page == "📊 Historical Glacier Trends":
+        from modules.glacier.historical_trend import show_historical_trend
+        show_historical_trend()
+
+    elif page == "🔮 Forecast Glacier Melt":
+        from modules.glacier.forecast_melt import show_forecast
+        show_forecast()
+
+    elif page == "📈 Model Evaluation":
+        from modules.glacier.model_evaluation import show_model_evaluation
+        show_model_evaluation()
+
+    elif page == "📖 About Glacier Module":
+        from modules.glacier.about import show_about_glacier
+        show_about_glacier()
 
 
 else:
