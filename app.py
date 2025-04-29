@@ -42,10 +42,11 @@ domain_options = {
         "📖 About Environment Module"
     ],
     "🏛️ Socioeconomic Indicators": [
-        "🏫 Education Trends",
-        "🏥 Health Access Analysis",
-        "💼 Employment Rate Analysis",
+        "📈 Agricultural Yield Trends",
+        "👥 Population Distribution",
+        "🌊 Economic Loss Forecast",
         "📖 About Socioeconomic Module"
+
     ],
     "🏔️ Glacier Monitoring": [
         "📊 Historical Glacier Trends",
@@ -105,23 +106,27 @@ elif domain == "🌱 Environmental Indicators":
         from modules.environment.about import show_about_environment
         show_about_environment()
 
+
 # Socioeconomic Indicators Domain
 elif domain == "🏛️ Socioeconomic Indicators":
-    if page == "🏫 Education Trends":
-        from modules.socioeconomic.education_trend import show_education_trend
-        show_education_trend()
+    if page == "📈 Agricultural Yield Trends":
+        from modules.socioeconomic.agriculture_yield_trend import show_agricultural_yield
+        show_agricultural_yield()
 
-    elif page == "🏥 Health Access Analysis":
-        from modules.socioeconomic.health_access import show_health_access
-        show_health_access()
+    elif page == "👥 Population Distribution":
+        from modules.socioeconomic.population_distribution import show_population_distribution
+        show_population_distribution()
 
-    elif page == "💼 Employment Rate Analysis":
-        from modules.socioeconomic.employment_rate import show_employment_rate
-        show_employment_rate()
+    elif page == "🌊 Economic Loss Forecast":
+        from modules.socioeconomic.economic_loss_forecast import show_economic_loss_forecast
+        show_economic_loss_forecast()
 
     elif page == "📖 About Socioeconomic Module":
         from modules.socioeconomic.about import show_about_socioeconomic
         show_about_socioeconomic()
+
+
+
 
 # Glacier Monitoring Domain
 elif domain == "🏔️ Glacier Monitoring":
