@@ -4,6 +4,15 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 
+
+
+# Patch deprecated aliases for backward compatibility
+if not hasattr(np, 'float'):
+    np.float = float
+    np.int = int
+    np.bool = bool
+
+
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
