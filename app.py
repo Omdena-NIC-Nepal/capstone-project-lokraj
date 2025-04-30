@@ -3,6 +3,12 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+
+if not hasattr(np, 'float'):
+    np.float = float
+    np.int = int
+    np.bool = bool
+
 # --- Setup Streamlit page config ---
 st.set_page_config(
     page_title="Nepal Climate and Development Dashboard",
